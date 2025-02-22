@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock-Paper-Scissor</title>
+</head>
+<body>
+    <script>
+        function getComputerChoice() {
+            randomNumber = Math.floor(Math.random()*3) + 1;
+            if (randomNumber === 1) {
+                return "Rock";
+            } else if (randomNumber === 2) {
+                return "Paper";
+            } else if (randomNumber === 3) {
+                return "Scissor";
+            }
+        }
+
+        function getHumanChoice() {
+            userChoice = prompt("Rock-Paper-Scissor, Shoot!: ").toLowerCase();
+            if (userChoice === "rock") {
+                return "Rock";
+            } else if (userChoice === "paper") {
+                return "Paper";
+            } else if (userChoice === "scissor") {
+                return "Scissor";
+            }
+        }
+
+        let humanScore = 0;
+        let computerScore = 0;
+        
+        function playRound(humanChoice, computerChoice) {
+            if ((humanChoice === "Rock") && (computerChoice === "Scissor")) {
+                humanScore++;
+                console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+            } else if ((humanChoice === "Rock") && (computerChoice === "Paper")) {
+                computerScore++;
+                console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+            } else if ((humanChoice === "Paper") && (computerChoice === "Rock")) {
+                humanScore++;
+                console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+            } else if ((humanChoice === "Paper") && (computerChoice === "Scissor")) {
+                computerScore++;
+                console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+            } else if ((humanChoice === "Scissor") && (computerChoice === "Rock")) {
+                computerScore++;
+                console.log(`You lose! ${computerChoice} beats ${humanChoice}`)
+            } else if ((humanChoice === "Scissor") && (computerChoice === "Paper")) {
+                humanScore++;
+                console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+            } else {
+                console.log("Draw");
+            }
+        }
+
+        function playGame() {
+            for (i=1; i<=5; i++) {
+                playRound(getHumanChoice(), getComputerChoice());
+            }
+
+            if (humanScore > computerScore) {
+                console.log("You win!");
+            } else if (computerScore > humanScore) {
+                console.log("You lose!");
+            } else {
+                console.log("It's a Draw!");
+            }
+        }
+
+        playGame();
+        
+    </script>
+</body>
+</html>
