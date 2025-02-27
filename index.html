@@ -56,10 +56,8 @@
                     console.log("Draw");
                 }
             }
-
-            for (i=1; i<=5; i++) {
-                playRound(getHumanChoice(), getComputerChoice());
-            }
+            
+            playRound(getHumanChoice(), getComputerChoice());
 
             if (humanScore > computerScore) {
                 console.log("You win!");
@@ -69,6 +67,28 @@
                 console.log("It's a Draw!");
             }
         }
+
+        const body = document.querySelector("body");
+
+        const button1 = document.createElement("button");
+        button1.textContent = "Rock";
+        button1.style.marginRight = "20px";
+        button1.style.background = "brown";
+        button1.style.color = "white";
+
+        const button2 = document.createElement("button");
+        button2.textContent = "Paper";
+        button2.style.marginRight = "20px";
+        button2.style.background = "#eeeeee";
+
+        const button3 = document.createElement("button");
+        button3.textContent = "Scissor";
+        button3.style.background = "grey";
+        button3.style.color = "white";
+
+        body.appendChild(button1);
+        body.appendChild(button2);
+        body.appendChild(button3);
 
         playGame();
         
