@@ -18,56 +18,6 @@
             }
         }
 
-        function getHumanChoice() {
-            userChoice = prompt("Rock-Paper-Scissor, Shoot!: ").toLowerCase();
-            if (userChoice === "rock") {
-                return "Rock";
-            } else if (userChoice === "paper") {
-                return "Paper";
-            } else if (userChoice === "scissor") {
-                return "Scissor";
-            }
-        }
-        
-        function playGame() {
-            let humanScore = 0;
-            let computerScore = 0;
-
-            function playRound(humanChoice, computerChoice) {
-                if ((humanChoice === "Rock") && (computerChoice === "Scissor")) {
-                    humanScore++;
-                    console.log(`You win! ${humanChoice} beats ${computerChoice}`);
-                } else if ((humanChoice === "Rock") && (computerChoice === "Paper")) {
-                    computerScore++;
-                    console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
-                } else if ((humanChoice === "Paper") && (computerChoice === "Rock")) {
-                    humanScore++;
-                    console.log(`You win! ${humanChoice} beats ${computerChoice}`);
-                } else if ((humanChoice === "Paper") && (computerChoice === "Scissor")) {
-                    computerScore++;
-                    console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
-                } else if ((humanChoice === "Scissor") && (computerChoice === "Rock")) {
-                    computerScore++;
-                    console.log(`You lose! ${computerChoice} beats ${humanChoice}`)
-                } else if ((humanChoice === "Scissor") && (computerChoice === "Paper")) {
-                    humanScore++;
-                    console.log(`You win! ${humanChoice} beats ${computerChoice}`);
-                } else {
-                    console.log("Draw");
-                }
-            }
-            
-            playRound(getHumanChoice(), getComputerChoice());
-
-            if (humanScore > computerScore) {
-                console.log("You win!");
-            } else if (computerScore > humanScore) {
-                console.log("You lose!");
-            } else {
-                console.log("It's a Draw!");
-            }
-        }
-
         const body = document.querySelector("body");
 
         const button1 = document.createElement("button");
@@ -75,20 +25,133 @@
         button1.style.marginRight = "20px";
         button1.style.background = "brown";
         button1.style.color = "white";
+        button1.style.borderRadius = "5px";
+        button1.style.padding = "5px 20px";
 
         const button2 = document.createElement("button");
         button2.textContent = "Paper";
         button2.style.marginRight = "20px";
         button2.style.background = "#eeeeee";
+        button2.style.borderRadius = "5px";
+        button2.style.padding = "5px 20px";
 
         const button3 = document.createElement("button");
         button3.textContent = "Scissor";
         button3.style.background = "grey";
         button3.style.color = "white";
+        button3.style.borderRadius = "5px";
+        button3.style.padding = "5px 20px";
 
         body.appendChild(button1);
         body.appendChild(button2);
         body.appendChild(button3);
+
+        const element = document.createElement("div");
+
+        body.appendChild(element);
+
+        const div = document.querySelector("div");
+
+        const div2 = document.createElement("div");
+        div2.style.marginTop = "15px";
+        div2.style.marginLeft = "18px";
+        div2.style.width = "200px";
+        div2.style.color = "white";
+        div2.style.textAlign = "Center";
+        div2.style.padding = "5px 20px";
+        div2.style.borderRadius = "5px";
+
+        const div3 = document.createElement("div");
+        div3.style.marginTop = "15px";
+        div3.style.marginLeft = "46px";
+        div3.style.width = "150px";
+        div3.style.color = "white";
+        div3.style.textAlign = "Center";
+        div3.style.padding = "5px 20px";
+        div3.style.borderRadius = "5px";
+
+        function playGame() {
+            let humanScore = 0;
+            let computerScore = 0;
+
+            function playRound(humanChoice, computerChoice) {
+                div2.style.border = "solid 2px black";
+                div3.style.background = "black"
+        
+                if ((humanChoice === "Rock") && (computerChoice === "Scissor")) {
+                    humanScore++;
+                    div2.textContent = (`You win! ${humanChoice} beats ${computerChoice}`);
+                    div2.style.background = "green";
+                    div3.textContent = `Player: ${humanScore} | Computer: ${computerScore}`;
+                } else if ((humanChoice === "Rock") && (computerChoice === "Paper")) {
+                    computerScore++;
+                    div2.textContent = (`You lose! ${computerChoice} beats ${humanChoice}`);
+                    div2.style.background = "red";
+                    div3.textContent = `Player: ${humanScore} | Computer: ${computerScore}`;
+                } else if ((humanChoice === "Paper") && (computerChoice === "Rock")) {
+                    humanScore++;
+                    div2.textContent = (`You win! ${humanChoice} beats ${computerChoice}`);
+                    div2.style.background = "green";
+                    div3.textContent = `Player: ${humanScore} | Computer: ${computerScore}`;
+                } else if ((humanChoice === "Paper") && (computerChoice === "Scissor")) {
+                    computerScore++;
+                    div2.textContent = (`You lose! ${computerChoice} beats ${humanChoice}`);
+                    div2.style.background = "red";
+                    div3.textContent = `Player: ${humanScore} | Computer: ${computerScore}`;
+                } else if ((humanChoice === "Scissor") && (computerChoice === "Rock")) {
+                    computerScore++;
+                    div2.textContent = (`You lose! ${computerChoice} beats ${humanChoice}`);
+                    div2.style.background = "red";
+                    div3.textContent = `Player: ${humanScore} | Computer: ${computerScore}`;
+                } else if ((humanChoice === "Scissor") && (computerChoice === "Paper")) {
+                    humanScore++;
+                    div2.textContent = (`You win! ${humanChoice} beats ${computerChoice}`);
+                    div2.style.background = "green";
+                    div3.textContent = `Player: ${humanScore} | Computer: ${computerScore}`;
+                } else {
+                    div2.textContent = ("Draw");
+                    div2.style.background = "blue";
+                    div3.textContent = `Player: ${humanScore} | Computer: ${computerScore}`;
+                }
+
+                if (humanScore === 5) {
+                    div2.textContent = ("You win!");
+                    div2.style.background = "green";
+                    humanScore = 0;
+                    computerScore = 0;
+                } else if (computerScore === 5) {
+                    div2.textContent = ("You Lose!");
+                    div2.style.background = "red";
+                    humanScore = 0;
+                    computerScore = 0;
+                }
+            }
+
+            button1.addEventListener("click", () => {
+                function getHumanChoice() {
+                    return "Rock";
+                }
+                playRound(getHumanChoice(), getComputerChoice());
+            });
+    
+            button2.addEventListener("click", () => {
+                function getHumanChoice() {
+                    return "Paper";
+                }
+                playRound(getHumanChoice(), getComputerChoice());
+            });
+    
+            button3.addEventListener("click", () => {
+                function getHumanChoice() {
+                    return "Scissor";
+                }
+                playRound(getHumanChoice(), getComputerChoice());
+            });
+
+        }
+
+        div.appendChild(div2);
+        div.appendChild(div3);
 
         playGame();
         
